@@ -37,6 +37,8 @@ app.post("/login", async (request, response) => {
       response.status(500).json({message: "Internal Server Error" ,error: error.message });
   }
 })
+// FOOD CAREGORY 
+
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
