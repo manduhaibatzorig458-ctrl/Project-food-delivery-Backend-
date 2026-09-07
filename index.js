@@ -3,6 +3,8 @@ import mongoose from "mongoose";
 import { User } from "./schemas/user-schema.js";
 import { connectDB } from "./connectDB.js";
 import { FoodCategory } from "./schemas/food-category-schema.js";
+import authRouter from "./router/auth/auth.js"
+
 
 const app = express();
 const PORT = 1000;
@@ -10,34 +12,7 @@ const PORT = 1000;
 app.use(express.json());
 connectDB();
 
-app.post("/sign-up", async (request, response) => {
-  try {
-    const { email, password } = request.body;
-    const user = await User.create({ email, password });
- 
-    console.log("--> Шинэ хэрэглэгч амжилттай хадгалагдлаа:", user);
- 
-    response.status(201).json({ message: "user created", user });
-  } catch (error) {
-    console.log("error", error);
-    response.status(500).json({message: "Internal Server Error" ,error: error.message });
-  }
-})
-
-app.post("/login", async (request, response) => {
-  try {
-    const { email, password } = request.body;
-    console.log(email, password);
-    const user = await User.findOne({ email: email });
-    if(!user) {
-      return response.status(404).json({ message: "User not found" });
-    }
-      return response.status(200).json({ message: "user found", user: user});
- 
-  } catch (error) {
-      response.status(500).json({message: "Internal Server Error" ,error: error.message });
-  }
-})
+app.use("/auth", authRouter)
 
 // FOOD CAREGORY 
 
@@ -60,6 +35,23 @@ app.post("/food-category", async (request, response) => {
     response.status(201).json({ message: "food category created", foodCategory });
   } catch (error) {
     console.log("error", error);
+    response.status(500).json({ message: "Internal Server Error", error: error.message });
+  }
+})
+
+app.patch("/food-category/:foodCategoryId", async (request, response) => {
+  try {
+    const { foodCategoryId } = request.params;
+    const foodCategory = await FoodCategory.findByIdAndUpdate(
+      foodCategoryId,
+      request.body,
+      { new: true }
+    );
+    if (!foodCategory) {
+      return response.status(404).json({ message: "Food category not found" });
+    }
+    response.status(200).json({ message: "food category updated", foodCategory });
+  } catch (error) {
     response.status(500).json({ message: "Internal Server Error", error: error.message });
   }
 })
