@@ -2,8 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import { User } from "./schemas/user-schema.js";
 import { connectDB } from "./connectDB.js";
-import { FoodCategory } from "./schemas/food-category-schema.js";
-import authRouter from "./router/auth/auth.js"
+import authRouter from "./router/auth/auth.js";
 
 
 const app = express();
