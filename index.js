@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors";
 import mongoose from "mongoose";
 
 import authRouter from "./router/auth/auth.js";
@@ -10,6 +11,11 @@ import { connectDB } from "./connectDB.js";
 const app = express();
 const PORT = 1000;
 
+app.use(cors({
+  origin: "http://localhost:3000",
+  credentials: true,
+}));
+
 app.use(express.json());
 connectDB();
 
@@ -19,6 +25,7 @@ app.use("/food-category", foodCategoryRouter);
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+
 
 
 // mongodb+srv://maagii458_db_user:maagii458_db_user@cluster0.o9aoqqe.mongodb.net/
