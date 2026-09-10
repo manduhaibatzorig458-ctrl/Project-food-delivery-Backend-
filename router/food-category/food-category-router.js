@@ -10,6 +10,7 @@ const router = express.Router();
 router.post("/create", createFoodCategoryController);
 router.get("/get", getFoodCategoryController);
 router.put("/update", updateFoodCategoryController);
-router.delete("/delete", deleteFoodCategoryController);
+// router.delete("/delete", deleteFoodCategoryController);
+router.delete("/delete/:id",deleteFoodCategoryController);
 
 export default router;
