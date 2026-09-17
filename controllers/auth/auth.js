@@ -5,7 +5,7 @@ import jwt from 'jsonwebtoken'
 
 const SALT_ROUND = 10
 
-const JWT_SECRET = 'testing'
+const JWT_SECRET = process.env.JWT_SECRET || "dev-secret-change-me"
 
 const signAuthToken = (user) => {
   console.log(user)
