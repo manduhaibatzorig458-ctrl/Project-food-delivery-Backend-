@@ -9,7 +9,7 @@ const JWT_SECRET = process.env.JWT_SECRET || "dev-secret-change-me"
 
 const signAuthToken = (user) => {
   console.log(user)
-  return jwt.sign({email: user.email, password: user.password}, JWT_SECRET,{
+  return jwt.sign({email: user.email, password: user.password, role: user.role}, JWT_SECRET,{
     expiresIn: "7d"
   })
 }
@@ -45,7 +45,7 @@ export const loginController = async (request, response) => {
 
 export const signUpController = async (request, response) => {
   try {
-    const { email, password } = request.body;
+    const { email, password, role } = request.body;
     const hashedPassword = await bcrypt.hash(password, SALT_ROUND)
     if (!email || !password) {
       return response
@@ -53,7 +53,7 @@ export const signUpController = async (request, response) => {
         .json({ message: "Email and password are required" });
     }
 
-    const newUser = await User.create({ email, password : hashedPassword});
+    const newUser = await User.create({ email, role, password : hashedPassword});
 
     const token = signAuthToken(newUser);
 
