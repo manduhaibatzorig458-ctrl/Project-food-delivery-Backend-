@@ -2,9 +2,9 @@ import express, { request } from "express";
 import { User } from "../../schemas/user-schema.js";
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
+import { Admin } from "mongodb";
 
-const SALT_ROUND = 10
-
+const SALT_ROUND = 10;
 const JWT_SECRET = process.env.JWT_SECRET || "dev-secret-change-me"
 
 const signAuthToken = (user) => {
