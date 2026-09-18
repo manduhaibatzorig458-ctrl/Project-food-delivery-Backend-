@@ -1,5 +1,5 @@
 import express, { request, response } from "express";
-import jwt from "jsonwebtoken"
+// import jwt from "jsonwebtoken"
 
 import { createFoodCategoryController } from "../../controllers/food-category/create-food-category.js";
 import { getFoodCategoryController } from "../../controllers/food-category/get-food-category.js";
