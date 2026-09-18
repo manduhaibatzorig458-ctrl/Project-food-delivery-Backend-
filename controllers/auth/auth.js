@@ -1,4 +1,4 @@
-import express from "express";
+import express, { request } from "express";
 import { User } from "../../schemas/user-schema.js";
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
@@ -16,10 +16,16 @@ const signAuthToken = (user) => {
 
 // bcrypt => password => random string === 'password' => true | false 
 
+const publicUser = (user) => ({
+   _id: user._id,
+  email: user.email,
+  role: user.role,
+})
+
 export const loginController = async (request, response) => {
   try {
     const { email, password } = request.body;
-    const user = await User.findOne({ email : email});
+    const user = await User.findOne({ email });
 
     if (!user) {
       return response.status(404).json({ message: "User not found" });
@@ -34,7 +40,7 @@ export const loginController = async (request, response) => {
     }
     const token = signAuthToken(user);
 
-    response.status(200).json({ message: "User found", user: "user", token: token});
+    response.status(200).json({ message: "User found", user: "publicUser(user)", token: signAuthToken});
   } catch (err) {
     console.error("loginController error:", err);
     response

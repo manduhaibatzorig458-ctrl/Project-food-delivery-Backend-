@@ -19,9 +19,9 @@ const requireCategoryName = (request, response, next) => {
         next()
     }}
 
-router.post("/create", requireToken, requireAdmin, requireCategoryName, createFoodCategoryController);
 router.get("/get", getFoodCategoryController);
-router.put("/update", updateFoodCategoryController);
-router.delete("/delete/:id",deleteFoodCategoryController);
+router.post("/create", requireToken, requireAdmin, requireCategoryName, createFoodCategoryController);
+router.put("/update",requireToken, requireAdmin, requireCategoryName, updateFoodCategoryController);
+router.delete("/delete/:id",requireToken, requireAdmin, deleteFoodCategoryController);
 
 export default router;
