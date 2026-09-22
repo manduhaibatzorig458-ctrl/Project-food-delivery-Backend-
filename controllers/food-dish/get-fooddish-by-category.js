@@ -1,4 +1,4 @@
-import { FoodDish } from "../models/food-dish-schema.js";
+import { FoodDish } from "../../schemas/food-dish-schema.js";
 
 // GET /food/:categoryId
 // Тухайн category-д хамаарах бүх хоолыг авах

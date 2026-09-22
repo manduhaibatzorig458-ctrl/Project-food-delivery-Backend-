@@ -1,4 +1,4 @@
-import { FoodDish } from "../models/food-dish-schema.js";
+import { FoodDish } from "../../schemas/food-dish-schema.js";
  
 export const deleteFoodDishController = async (request, response) => {
   try {

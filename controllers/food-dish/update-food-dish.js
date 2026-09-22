@@ -1,4 +1,4 @@
-import { FoodDish } from "../models/food-dish-schema.js";
+import { FoodDish } from "../../schemas/food-dish-schema.js";
 
 export const updateFoodDishController = async (request, response) => {
   try {

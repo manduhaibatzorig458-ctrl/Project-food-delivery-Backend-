@@ -23,6 +23,7 @@ connectDB();
 app.use("/auth", authRouter);
 app.use("/food-category", foodCategoryRouter);
 
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
@@ -31,3 +32,6 @@ app.listen(PORT, () => {
 
 // mongodb+srv://maagii458_db_user:maagii458_db_user@cluster0.o9aoqqe.mongodb.net/
 // 
+
+
+
