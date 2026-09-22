@@ -1,33 +1,35 @@
 import mongoose from "mongoose";
-import { Timestamp } from "mongodb";
-
 const foodDishSchema = new mongoose.Schema(
   {
     foodName: {
       type: String,
       required: true,
     },
+
     price: {
       type: Number,
       required: true,
     },
+
     image: {
       type: String,
       required: true,
     },
+
     ingredients: {
       type: String,
       required: true,
     },
+
     category: {
-      type: Schema.Types.ObjectId,
+      // type: mongoose.Schema.Types.ObjectId,
       ref: "Category",
       required: true,
     },
   },
   {
-    timestamps: true, 
+    timestamps: true,
   }
 );
 
-export const FoodDish = mongoose.model("FoodDish", foodDishSchema)
+export const FoodDish = mongoose.model("FoodDish", foodDishSchema);

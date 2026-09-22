@@ -1,24 +1,23 @@
 import FoodDish from "../../schemas/food-dish-schema.js";
 
-export const createFoodDishController = async (req, res) => {
+export const createFoodDishController = async (request, response) => {
   try {
     const { foodName, dishName, foodPrice, price, ingredients, categoryId, image } =
-      req.body;
+      request.body;
 
-    // Support both naming conventions until the frontend is aligned
     const resolvedName = foodName || dishName;
     const resolvedPrice = foodPrice || price;
 
     if (!resolvedName) {
-      return res.status(400).json({ message: "Food name is required" });
+      return response.status(400).json({ message: "Food name is required" });
     }
 
     if (!resolvedPrice) {
-      return res.status(400).json({ message: "Food price is required" });
+      return response.status(400).json({ message: "Food price is required" });
     }
 
     if (!categoryId) {
-      return res.status(400).json({ message: "categoryId is required" });
+      return response.status(400).json({ message: "categoryId is required" });
     }
 
     const newDish = await FoodDish.create({
@@ -29,12 +28,12 @@ export const createFoodDishController = async (req, res) => {
       image: image || "",
     });
 
-    return res.status(201).json({
+    return response.status(201).json({
       message: "Dish created successfully",
       foodDish: newDish,
     });
   } catch (error) {
     console.error("CREATE FOOD DISH ERROR:", error);
-    return res.status(500).json({ message: "Failed to create dish" });
+    return response.status(500).json({ message: "Failed to create dish" });
   }
 };

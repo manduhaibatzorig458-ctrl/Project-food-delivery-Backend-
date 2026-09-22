@@ -24,9 +24,12 @@ app.use("/auth", authRouter);
 app.use("/food-category", foodCategoryRouter);
 
 
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+
+
 
 
 
