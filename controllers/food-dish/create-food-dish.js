@@ -1,4 +1,4 @@
-import FoodDish from "../../schemas/food-dish-schema.js";
+import { FoodDish } from "../../schemas/food-dish-schema.js";
 
 export const createFoodDishController = async (request, response) => {
   try {
@@ -22,9 +22,9 @@ export const createFoodDishController = async (request, response) => {
 
     const newDish = await FoodDish.create({
       foodName: resolvedName,
-      foodPrice: resolvedPrice,
+      price: resolvedPrice,
       ingredients: ingredients || "",
-      categoryId,
+      category: categoryId,
       image: image || "",
     });
 

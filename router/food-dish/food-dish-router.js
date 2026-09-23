@@ -28,17 +28,14 @@ import { createFoodDishController } from "../../controllers/food-dish/create-foo
 
 const foodDishRouter = express.Router();
 
-foodDishRouter.get("/food/get", getFoodDishController);
+foodDishRouter.get("/get", getFoodDishController);
 
-foodDishRouter.get(
-  "/food/get/:categoryId",
-  getFoodDishByCategoryController
-);
+foodDishRouter.get("/get/:categoryId", getFoodDishByCategoryController);
 
 foodDishRouter.post("/create", createFoodDishController);
 
-foodDishRouter.put("/food/:foodId", updateFoodDishController);
+foodDishRouter.put("/:foodId", updateFoodDishController);
 
-foodDishRouter.delete("/food/:foodId", deleteFoodDishController);
+foodDishRouter.delete("/:foodId", deleteFoodDishController);
 
 export default foodDishRouter;
