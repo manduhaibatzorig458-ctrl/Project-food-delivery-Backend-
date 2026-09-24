@@ -7,15 +7,13 @@ import { getFoodDishByCategoryController } from "../../controllers/food-dish/get
 import { createFoodDishController } from "../../controllers/food-dish/create-food-dish.js";
 
 const foodDishRouter = express.Router();
-
 foodDishRouter.get("/get", getFoodDishController);
-
 foodDishRouter.get("/get/:categoryId", getFoodDishByCategoryController);
-
 foodDishRouter.post("/create", createFoodDishController);
-
 foodDishRouter.put("/:foodId", updateFoodDishController);
-
 foodDishRouter.delete("/:foodId", deleteFoodDishController);
 
 export default foodDishRouter;
+
+
+// hello
